@@ -1,4 +1,7 @@
 description = "Default layout"
+
+[session]
+security = "all"
 ==
 <!DOCTYPE html>
 <html>
@@ -34,9 +37,12 @@ description = "Default layout"
                     </div>
                     <div class="collapse navbar-collapse navbar-main-collapse">
                         <ul class="nav navbar-nav">
-                            <li class="{% if this.page.id == 'home' %}active{% endif %}"><a href="{{ 'home'|page }}">Basic concepts</a></li>
-                            <li class="{% if this.page.id == 'ajax' %}active{% endif %}"><a href="{{ 'ajax'|page }}">AJAX framework</a></li>
-                            <li class="{% if this.page.id == 'plugins' %}active{% endif %}"><a href="{{ 'plugins'|page }}">Plugin components</a></li>
+                            <li class="{% if this.page.id == 'account' %}active{% endif %}"><a href="{{ 'account'|page }}">Account</a></li>
+                            <li class="{% if this.page.id == 'blog' %}active{% endif %}"><a href="{{ 'blog'|page }}">Blog</a></li>
+                            <li class="{% if this.page.id == 'forum' %}active{% endif %}"><a href="{{ 'forum'|page }}">Forum</a></li>
+                            {% if user %}
+                                <li><a href="#" data-request="onLogout">Logout</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -46,7 +52,15 @@ description = "Default layout"
 
         <!-- Content -->
         <section id="layout-content">
-            {% page %}
+            <div class="jumbotron">
+                <div class="container">
+                    <h1>{{ this.page.title }}</h1>
+                    <p>{{ this.page.description }}</p>
+                </div>
+            </div>
+            <div class="container">
+                {% page %}
+            </div>
         </section>
 
         <!-- Footer -->
