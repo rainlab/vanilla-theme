@@ -22,5 +22,10 @@ function onEnd()
 ==
 {% component 'blogPost' %}
 
-<h2>Comments</h2>
-{% component 'forumEmbedTopic' %}
+<hr />
+<h4>Comments</h4>
+{% if user %}
+    {% component 'forumEmbedTopic' %}
+{% else %}
+    <p>Please <a href="{{ 'account'|page }}">sign in</a> to comment!</p>
+{% endif %}
