@@ -1,2 +1,6 @@
-# vanilla-theme
-A plain starter template that implements account management, a blog and community forum.
+Vanilla Theme
+==========
+
+![Screenshot](https://raw.githubusercontent.com/rainlab/vanilla-theme/master/preview.png)
+
+A plain starter template that contains preconfigured pages for account management, a blog and community forum. This theme is forked from the standard demo theme that ships with all copies of October.
