@@ -76,8 +76,6 @@ security = "all"
         <!-- Scripts -->
         <script src="{{ [
             '@jquery',
-            '@framework',
-            '@framework.extras',
             'assets/vendor/bootstrap/js/transition.js',
             'assets/vendor/bootstrap/js/alert.js',
             'assets/vendor/bootstrap/js/button.js',
@@ -92,6 +90,8 @@ security = "all"
             'assets/vendor/bootstrap/js/affix.js',
             'assets/javascript/app.js'
         ]|theme }}"></script>
+        {% framework extras %}
+        {% scripts %}
 
     </body>
 </html>
