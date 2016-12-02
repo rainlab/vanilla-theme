@@ -27,7 +27,7 @@
                     on {{ post.published_at|date('M d, Y') }}
                 </p>
 
-                <p class="excerpt">{{ post.summary|raw }}</p>
+                <p class="excerpt">{{ post.summary }}</p>
             </div>
         </div>
     {% else %}
