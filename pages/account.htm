@@ -10,6 +10,8 @@ paramCode = "code"
 ==
 {% component 'account' %}
 
-<hr />
+{% if not user %}
+    <hr />
 
-<p><a href="{{ 'forgot-password'|page }}">Forgotten your password?</a></p>
+    <p><a href="{{ 'forgot-password'|page }}">Forgotten your password?</a></p>
+{% endif %}
