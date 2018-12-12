@@ -1,0 +1,9 @@
+{% set currentCategorySlug = blogCategories.currentCategorySlug %}
+<a
+    href="{{ category.url }}"
+    class="list-group-item {{ category.slug == currentCategorySlug ? 'active' }}"
+    >{{ category.name }}
+    {% if category.post_count > 0 %}
+        <span class="badge">{{ postCount }}</span>
+    {% endif %}
+</a>

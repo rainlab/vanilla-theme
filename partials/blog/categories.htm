@@ -1,16 +1,10 @@
-{% set categories = blogCategories.categories %}
-{% set currentCategorySlug = blogCategories.currentCategorySlug %}
 
 <div class="list-group">
-    {% for category in categories %}
-        {% set postCount = category.post_count %}
-        <a
-            href="{{ category.url }}"
-            class="list-group-item {{ category.slug == currentCategorySlug ? 'active' }}"
-            >{{ category.name }}
-            {% if postCount %}
-                <span class="badge">{{ postCount }}</span>
-            {% endif %}
-        </a> 
+    {% for category in blogCategories.categories %}
+      {% partial "blog/category-item.htm" category=category %}
+
+      {% for child in category.children %}
+        {% partial "blog/category-item.htm" category=child %}
+      {% endfor %}
     {% endfor %}
 </div>
