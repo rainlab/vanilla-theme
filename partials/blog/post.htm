@@ -1,0 +1,29 @@
+<div class="media">
+
+    <div class="media-left">
+        <a href="{{ post.url }}">
+            {% if post.featured_images.count > 0 %}
+                <img class="media-object" src="{{ post.featured_images.first.getThumb(100, 'auto') }}" />
+            {% else %}
+                <img class="media-object" src="http://placehold.it/100x100" />
+            {% endif %}
+        </a>
+    </div>
+
+    <div class="media-body">
+        <h4 class="media-heading">
+            <a href="{{ post.url }}">{{ post.title }}</a>
+        </h4>
+        <p class="info">
+            Posted
+            {% if post.categories.count %} in {% endif %}
+            {% for category in post.categories %}
+                <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+            on {{ post.published_at|date('M d, Y') }}
+        </p>
+
+        <p class="excerpt">{{ post.summary|raw }}</p>
+    </div>
+</div>
+
