@@ -1,5 +1,8 @@
 {
     "name": "rainlab/vanilla-theme",
     "type": "october-theme",
-    "description": "A plain starter template that implements account management, a blog and community forum."
+    "description": "A plain starter template that implements account management, a blog and community forum.",
+    "require": {
+        "composer/installers": "~1.0"
+    }
 }
