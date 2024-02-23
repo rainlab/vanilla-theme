@@ -13,7 +13,7 @@ Package | Version Required
 ------- | -------
 October CMS | 3.6 or above
 `RainLab.User` | 3.0 or above
-`RainLab.Forum` | 1.2 or above
+`RainLab.Forum` | 1.4 or above
 
 To install the Blog blueprints, navigate to **Settings → Frontend Theme → Manage → Seed Content**. This will install the blueprint files to the **app/blueprints** directory.
 
