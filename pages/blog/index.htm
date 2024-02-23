@@ -47,6 +47,13 @@ vars[activeNavLink] = 'blog'
                 {% partial 'blog/post-article' post=post %}
             {% endfor %}
 
+            {# Remove this if you like #}
+            {% if not blog.hasBlueprint %}
+                <div class="alert alert-warning" role="alert">
+                    <p class="mb-0">The blueprint <code>Blog\Post</code> was not found. Please create this blueprint in the Admin Panel using the <strong>System → Frontend Theme → Seed Content</strong> page.</p>
+                </div>
+            {% endif %}
+
             <nav class="blog-pagination" aria-label="Pagination">
                 {{ posts.links|raw }}
             </nav>
