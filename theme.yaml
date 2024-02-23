@@ -1,6 +1,6 @@
 name: Vanilla
 description: A plain starter template that implements account management, a blog and community forum.
-author: OctoberCMS
+author: October CMS
 homepage: 'http://octobercms.com'
 code: Vanilla
 require:
