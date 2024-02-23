@@ -1,0 +1,42 @@
+##
+title = "Account Details"
+url = "/account"
+layout = "default"
+description = "Sign in, registration and account management."
+
+[session]
+security = "user"
+redirect = "account/login"
+
+[account]
+isDefault = 1
+
+[resetPassword]
+
+[resources]
+vars[activeNavLink] = 'account'
+vars[activeSubLink] = 'index'
+==
+<div class="page-account">
+    <div class="mb-4">
+        {% ajaxPartial 'account/field-name' %}
+    </div>
+    <div class="mb-4">
+        {% ajaxPartial 'account/field-email' %}
+    </div>
+    <div class="mb-4">
+        {% ajaxPartial 'account/field-password' %}
+    </div>
+    <div class="mb-4">
+        {% ajaxPartial 'account/field-profile' %}
+    </div>
+    <div class="mb-4">
+        {% ajaxPartial 'account/field-two-factor-auth' %}
+    </div>
+    <div class="mb-4">
+        {% ajaxPartial 'account/field-account-sessions' %}
+    </div>
+    <div>
+        {% ajaxPartial 'account/field-account-delete' %}
+    </div>
+</div>

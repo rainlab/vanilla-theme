@@ -1,0 +1,23 @@
+##
+url = "/account/login"
+layout = "default"
+title = "Account Login"
+description = "Sign in, registration and account management."
+
+[authentication]
+resetPage = "account/password"
+
+[session]
+security = "guest"
+redirect = "account/index"
+
+[resources]
+vars[activeNavLink] = 'account'
+==
+<div class="page-account">
+    <div class="d-flex align-items-center py-4">
+        <main class="form-login mw-360 m-auto">
+            {% component 'authentication' %}
+        </main>
+    </div>
+</div>

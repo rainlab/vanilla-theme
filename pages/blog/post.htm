@@ -1,31 +1,64 @@
-title = "Blog Post"
+##
 url = "/blog/post/:slug"
-layout = "default"
-description = "Viewing a single blog post"
-hidden = "0"
+layout = "blog"
+title = "Display a Blog Post"
+meta_title = "{{ blog.title }} - Blog"
 
-[blogPost]
-slug = "{{ :slug }}"
-categoryPage = "blog/category"
+[section blog]
+handle = "Blog\Post"
+identifier = "slug"
+
+[collection blogCategories]
+handle = "Blog\Categories"
 
 [forumEmbedTopic]
 embedCode = "{{ :slug }}"
 channelSlug = "channel-orange"
 memberPage = "404"
-==
-<?php
-function onEnd()
-{
-    $this->page->title = $this->post->title;
-}
-?>
-==
-{% component 'blogPost' %}
 
-<hr />
-<h4>Comments</h4>
-{% if user %}
-    {% component 'forumEmbedTopic' %}
-{% else %}
-    <p>Please <a href="{{ 'account'|page }}">sign in</a> to comment!</p>
+[resources]
+vars[activeNavLink] = 'blog'
+==
+{% if blog is empty %}
+    {% do abort(404) %}
 {% endif %}
+
+{% set post = blog %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="blog-post-summary">
+                {% if post.categories %}
+                    <h6>
+                        {% for category in post.categories %}
+                            {{ category.title }}
+                            {% if not loop.last %}&bull;{% endif %}
+                        {% endfor %}
+                    </h6>
+                {% endif %}
+                {% if post.author %}
+                    <p>by <a href="{{ 'blog/author'|page({ slug: post.author.slug }) }}">{{ post.author.title }}</a></p>
+                {% endif %}
+                <p class="text-muted">
+                    {{ post.published_at_date|date('j M Y') }}
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-10 col-xl-8">
+            {% partial 'blog/post-article' post=post %}
+        </div>
+        <div class="col-xl-2 d-none d-xl-block">
+            {# Whitespace / Latest Posts #}
+        </div>
+    </div>
+
+    <div class="text-center border-bottom mb-5">
+        <h4>Comments</h4>
+    </div>
+    {% if user %}
+        {% component 'forumEmbedTopic' %}
+    {% else %}
+        <p>Please <a href="{{ 'account'|page }}">sign in</a> to comment!</p>
+    {% endif %}
+</div>
