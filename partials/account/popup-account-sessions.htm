@@ -1,0 +1,49 @@
+<form
+    method="post"
+    class="modal-content"
+    data-request="onDeleteOtherSessions"
+    data-request-flash>
+
+    <input type="hidden" name="redirect" value="true" />
+
+    <div class="modal-header">
+        <h5 class="modal-title h4">
+            Log out of all other devices
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    </div>
+    <div class="modal-body">
+        <p>
+            Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.
+        </p>
+
+        <div>
+            <input
+                id="deleteSessionsPassword"
+                name="password"
+                type="password"
+                value=""
+                class="form-control"
+                placeholder="Password"
+            />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cancel
+        </button>
+        <button
+            class="btn btn-danger"
+            data-attach-loading
+            type="submit">
+            Log out other devices
+        </button>
+    </div>
+
+</form>
+
+<script>
+setTimeout(function() {
+    document.getElementById('deleteSessionsPassword').focus();
+}, 100);
+</script>

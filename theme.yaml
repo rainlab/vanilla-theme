@@ -5,5 +5,4 @@ homepage: 'http://octobercms.com'
 code: Vanilla
 require:
     - RainLab.User
-    - RainLab.Blog
     - RainLab.Forum
