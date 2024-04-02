@@ -1,6 +1,6 @@
 {% import _self as field %}
 {% set collapseClass = 'account-sessions-collapse' %}
-{% set sessions = securityDetails.sessions %}
+{% set sessions = account.sessions %}
 {% set mySession = collect(sessions).where('is_current_device').first %}
 {% if sessions %}
     <div>
