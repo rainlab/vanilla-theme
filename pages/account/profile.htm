@@ -1,0 +1,30 @@
+##
+title = "Account Details"
+url = "/account/profile"
+layout = "default"
+description = "Extra profile features."
+
+[session]
+security = "user"
+redirect = "account/login"
+
+[account]
+isDefault = 1
+
+[resetPassword]
+
+[resources]
+vars[activeNavLink] = 'profile'
+==
+{# Remove this if you like #}
+{% if not session %}
+    <div class="alert alert-warning" role="alert">
+        <p class="mb-0">The plugin <code>RainLab.User</code> was not found. Please install this plugin in the Admin Panel using the <strong>System → System Updates → Install Packages</strong> page.</p>
+    </div>
+{% endif %}
+
+<div class="page-account">
+    <div class="mb-4">
+        {% ajaxPartial 'account/field-profile' %}
+    </div>
+</div>
