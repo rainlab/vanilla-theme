@@ -1,6 +1,7 @@
 ##
 description = "Default layout"
 
+[notifications]
 [session]
 security = "all"
 ==
@@ -14,6 +15,8 @@ security = "all"
         <header id="layout-header">
             {% partial 'site/header' %}
         </header>
+
+        {% component 'notifications' %}
 
         {% partial 'site/flash-messages' %}
 
@@ -36,6 +39,5 @@ security = "all"
         <footer id="layout-footer">
             {% partial "site/footer" %}
         </footer>
-
     </body>
 </html>
