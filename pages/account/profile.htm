@@ -1,5 +1,5 @@
 ##
-title = "Account Details"
+title = "Profile Details"
 url = "/account/profile"
 layout = "default"
 description = "Extra profile features."
@@ -11,20 +11,31 @@ redirect = "account/login"
 [account]
 isDefault = 1
 
-[resetPassword]
+[addressBook]
 
 [resources]
 vars[activeNavLink] = 'profile'
 ==
 {# Remove this if you like #}
-{% if not session %}
+{% if not addressBook %}
     <div class="alert alert-warning" role="alert">
-        <p class="mb-0">The plugin <code>RainLab.User</code> was not found. Please install this plugin in the Admin Panel using the <strong>System → System Updates → Install Packages</strong> page.</p>
+        <p class="mb-0">The plugin <code>RainLab.UserPlus</code> was not found. Please install this plugin in the Admin Panel using the <strong>System → System Updates → Install Packages</strong> page.</p>
+    </div>
+{% else %}
+    <div class="alert alert-info" role="alert">
+        <p class="mb-0"><strong>Tip</strong>: Enable or disable the address book using the <strong>System → User Settings → Profile</strong> page.</p>
     </div>
 {% endif %}
 
 <div class="page-account">
-    <div class="mb-4">
-        {% ajaxPartial 'account/field-profile' %}
-    </div>
+    {% if addressBook.useAddressBook %}
+        {% ajaxPartial 'account/address-book-view' %}
+    {% else %}
+        <div class="mb-4">
+            {% ajaxPartial 'account/field-profile' %}
+        </div>
+        <div class="mb-4">
+            {% ajaxPartial 'account/field-address' %}
+        </div>
+    {% endif %}
 </div>

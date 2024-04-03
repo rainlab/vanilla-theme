@@ -1,0 +1,20 @@
+[location]
+==
+{% set countryId = countryId|default(post('country_id')) %}
+{% set stateControlSelector = stateControlSelector|default(post('state_control_selector', 'stateControlSelector')) %}
+{% set countries = location.availableCountries|default([]) %}
+
+<select
+    name="country_id"
+    class="form-select"
+    data-request="onAjax"
+    data-request-data="{
+        state_control_selector: '{{ stateControlSelector }}'
+    }"
+    data-request-update="{
+        'account/select-state': '#{{ stateControlSelector }}'
+    }">
+    {% for country in countries %}
+        <option value="{{ country.id }}" {{ country.id == countryId ? 'selected'}}>{{ country.name }}</option>
+    {% endfor %}
+</select>

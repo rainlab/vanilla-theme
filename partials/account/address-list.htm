@@ -1,0 +1,49 @@
+{% for address in addressBook.addresses %}
+    <div class="col-md-12 col-lg-6 col-xl-5 col-xxl-4 mb-3">
+        <div class="card">
+            <div class="card-body p-4">
+                <p class="mb-3">
+                    {{ address.full_name }}<br />
+                    {{ address.address_line1 }}<br />
+                    {{ address.city }}, {{ address.state.name }}<br />
+                    {{ address.country.name }} {{ address.zip }}
+                </p>
+                {% if address.is_default %}
+                    <span class="badge bg-primary">
+                        Default address
+                    </span>
+                {% else %}
+                    <a
+                        href="javascript:;"
+                        data-request="onUpdateAddress"
+                        data-request-update="{ 'account/address-list': '#accountAddressList' }"
+                        data-request-data="{ address_id: '{{ address.id }}', is_default: true }"
+                        class="link-primary">
+                        <small>Set as Default</small>
+                    </a>
+                {% endif %}
+                <div class="mt-2">
+                    <a
+                        href="javascript:;"
+                        class="text-inherit"
+                        data-request="onAjax"
+                        data-request-update="{ 'account/popup-account-address': '#siteModalContent' }"
+                        data-request-data="{ address_id: '{{ address.id }}' }"
+                        data-bs-toggle="modal"
+                        data-bs-target="#siteModal">
+                        <small>Edit</small>
+                    </a>
+                    <a
+                        href="javascript:;"
+                        data-request="onUpdateAddress"
+                        data-request-confirm="Are you sure you want to delete this address?"
+                        data-request-update="{ 'account/address-list': '#accountAddressList' }"
+                        data-request-data="{ address_id: '{{ address.id }}', address_delete: true }"
+                        class="text-danger ms-3">
+                        <small>Delete</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

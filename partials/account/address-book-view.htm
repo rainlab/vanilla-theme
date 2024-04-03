@@ -1,0 +1,36 @@
+{% set hasAddresses = addressBook.hasAddresses %}
+<div class="section-title border-bottom d-flex">
+    <h5 class="h4 flex-grow-1">
+        Address Book
+    </h4>
+    {% if hasAddresses %}
+        <a
+            href="javascript:;"
+            class="btn btn-outline-secondary btn-sm"
+            data-request="onAjax"
+            data-request-update="{ 'account/popup-account-address': '#siteModalContent' }"
+            data-bs-toggle="modal"
+            data-bs-target="#siteModal">
+            Add a new address
+        </a>
+    {% endif %}
+</div>
+<div class="row pt-2" id="accountAddressList">
+    {% if hasAddresses %}
+        {% partial 'account/address-list' %}
+    {% else %}
+        <div class="text-center">
+            <i class="bi bi-map text-secondary" style="font-size:70px"></i>
+            <p style="margin-top:-1rem">No addresses yet</p>
+            <a
+                href="javascript:;"
+                class="btn btn-outline-primary mt-2"
+                data-request="onAjax"
+                data-request-update="{ 'account/popup-account-address': '#siteModalContent' }"
+                data-bs-toggle="modal"
+                data-bs-target="#siteModal">
+                Add your first address
+            </a>
+        </div>
+    {% endif %}
+</div>

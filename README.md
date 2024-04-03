@@ -3,7 +3,7 @@ Vanilla Theme
 
 ![Screenshot](https://raw.githubusercontent.com/rainlab/vanilla-theme/master/assets/images/theme-preview.png)
 
-A plain starter template that contains pre-configured pages for account management, a blog and community forum. This theme is forked from the standard demo theme that ships with all copies of October.
+A plain starter template that contains pre-configured pages for account management, a blog and community forum. This theme is based on the standard demo theme that is provided by October CMS and with similar functionality to Laravel Jetstream.
 
 ## Requirements
 
@@ -13,9 +13,8 @@ Package | Version Required
 ------- | -------
 October CMS | 3.6 or above
 `RainLab.User` | 3.0 or above
+`RainLab.UserPlus` | 2.0 or above
 `RainLab.Forum` | 1.4 or above
-
-To install the Blog blueprints, navigate to **Settings → Frontend Theme → Manage → Seed Content**. This will install the blueprint files to the **app/blueprints** directory.
 
 ## Installation Instructions
 
@@ -32,5 +31,3 @@ To uninstall this theme, run the following command:
 ```bash
 php artisan theme:remove RainLab.Vanilla
 ```
-
-Next, delete the blueprints from **app/blueprints/rainlab-vanilla**.

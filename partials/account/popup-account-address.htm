@@ -7,7 +7,7 @@
     data-request-flash>
 
     {% set address = post('address_id')
-        ? profileDetails.addressBook.find(post('address_id'))
+        ? addressBook.addresses.find(post('address_id'))
         : null %}
 
     {% if address %}
@@ -84,10 +84,10 @@
                     placeholder="Zip / Postal Code" />
             </div>
             <div class="col-12">
-                {% partial 'account/select-country' %}
+                {% partial 'account/select-country' countryId=address.country_id %}
             </div>
             <div class="col-12">
-                {% partial 'account/select-state' %}
+                {% partial 'account/select-state' countryId=address.country_id stateId=address.state_id %}
             </div>
             <div class="col-12">
                 <div class="form-check">
