@@ -1,0 +1,52 @@
+/*
+ * CSS Variables
+ */
+:root {
+    --font-size-base:                14px;
+    --line-height-base:              1.428571429;
+    --line-height-computed:          20px;
+    --border-radius-base:            6px;
+
+    --gray-base:                     #000;
+    --gray-darker:                   #222;
+    --gray-dark:                     #333;
+    --gray:                          #555;
+    --gray-light:                    #777;
+    --gray-lighter:                  #eee;
+
+    --state-success-text:            #3c763d;
+    --state-success-bg:              #dff0d8;
+    --state-success-border:          #d6e9c6;
+
+    --state-info-text:               #31708f;
+    --state-info-bg:                 #d9edf7;
+    --state-info-border:             #bce8f1;
+
+    --state-warning-text:            #8a6d3b;
+    --state-warning-bg:              #fcf8e3;
+    --state-warning-border:          #faebcc;
+
+    --state-danger-text:             #a94442;
+    --state-danger-bg:               #f2dede;
+    --state-danger-border:           #ebccd1;
+
+    --callout-padding:               20px;
+    --callout-border-radius:         var(--border-radius-base);
+    --callout-border:                var(--gray-lighter);
+
+    --callout-info-bg:               #f4f8fa;
+    --callout-info-text:             var(--state-info-text);
+    --callout-info-border:           var(--state-info-border);
+
+    --callout-warning-bg:            #faf8f0;
+    --callout-warning-text:          var(--state-warning-text);
+    --callout-warning-border:        var(--state-warning-border);
+
+    --callout-danger-bg:             #fdf7f7;
+    --callout-danger-text:           var(--state-danger-text);
+    --callout-danger-border:         var(--state-danger-border);
+
+    --callout-success-bg:            #f9fdf7;
+    --callout-success-text:          var(--state-success-text);
+    --callout-success-border:        var(--state-success-border);
+}
