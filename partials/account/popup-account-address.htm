@@ -84,10 +84,10 @@
                     placeholder="Zip / Postal Code" />
             </div>
             <div class="col-12">
-                {% partial 'account/select-country' countryId=address.country_id %}
+                {% partial '@form-select-country' countryId=address.country_id %}
             </div>
             <div class="col-12">
-                {% partial 'account/select-state' countryId=address.country_id stateId=address.state_id %}
+                {% partial '@form-select-state' countryId=address.country_id stateId=address.state_id %}
             </div>
             <div class="col-12">
                 <div class="form-check">

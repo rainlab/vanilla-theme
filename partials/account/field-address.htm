@@ -81,11 +81,11 @@
         <div class="row">
             <div class="col-6 mb-2">
                 <label for="stateControlSelector" class="form-label">Country</label>
-                {% partial 'account/select-country' countryId=user.country_id %}
+                {% partial '@form-select-country' countryId=user.country_id %}
             </div>
             <div class="col-6 mb-2">
                 <label for="stateControlSelector" class="form-label">State</label>
-                {% partial 'account/select-state' countryId=user.country_id stateId=user.state_id %}
+                {% partial '@form-select-state' countryId=user.country_id stateId=user.state_id %}
             </div>
         </div>
         <div class="section-actions">
