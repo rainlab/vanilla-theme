@@ -21,8 +21,23 @@ function onStart()
                 <li class="nav-item"><a class="nav-link {{ activeNavLink == 'forum' ? 'active'}}" href="{{ 'forum/index'|page }}">Forum</a></li>
             </ul>
             <ul class="navbar-nav navbar-right">
-                {% if backendUrl %}<li class="nav-item"><a class="nav-link" href="{{ backendUrl }}" target="backend">Backend Area</a></li>{% endif %}
-                {% if user %}<li class="nav-item"><a class="nav-link" href="#" data-request="onLogout">Logout</a></li>{% endif %}
+                {% if user %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle py-1" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="profile-avatar">
+                                <img src="{{ user.avatar_url }}" alt="Profile Picture">
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ 'account/profile'|page }}">Profile</a></li>
+                            {% if backendUrl %}<li><a class="dropdown-item" href="{{ backendUrl }}" target="backend">Backend Area</a></li>{% endif %}
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" data-request="onLogout">Logout</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{{ 'account/login'|page }}">Login</a></li>
+                {% endif %}
             </ul>
         </div>
     </div>
