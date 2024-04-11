@@ -23,3 +23,14 @@ addEventListener('render', function() {
         }
     });
 });
+
+/*
+ * Mini Notification Partial
+ */
+addEventListener('user:notification-count', (ev) => {
+    var unreadCount = ev.detail.unreadCount || 0,
+        $container = document.querySelector('.mini-notifications');
+
+    $container.querySelector('.badge').innerText = unreadCount;
+    $container.classList[unreadCount ? 'add' : 'remove']('has-unread');
+});

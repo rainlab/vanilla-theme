@@ -1,6 +1,6 @@
 ##
-title = "Forum Channel"
-url = "/forum/channel/:slug"
+title = "Forum Member"
+url = "/forum/member/:slug"
 layout = "default"
 description = "View a specific forum channel."
 hidden = "0"
@@ -8,10 +8,10 @@ hidden = "0"
 [resources]
 vars[activeNavLink] = 'forum'
 
-[forumChannel]
+[forumMember]
 slug = "{{ :slug }}"
 memberPage = "404"
 topicPage = "forum/topic"
-memberPage = "forum/member"
+channelPage = "forum/channel"
 ==
-{% component 'forumChannel' %}
+{% component 'forumMember' %}

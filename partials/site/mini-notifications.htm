@@ -4,8 +4,3 @@
         {{ notifications.unreadCount }}
     </span>
 </a>
-<script>
-    addEventListener('user:notifications-read', () => {
-        document.querySelector('.mini-notifications')?.classList.remove('has-unread');
-    }, { once: true });
-</script>

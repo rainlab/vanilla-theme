@@ -5,10 +5,14 @@ layout = "default"
 description = "Viewing a single forum discussion topic."
 hidden = "0"
 
+[resources]
+vars[activeNavLink] = 'forum'
+
 [forumTopic]
 slug = "{{ :slug }}"
 postsPerPage = "20"
 memberPage = "404"
 channelPage = "forum/channel"
+memberPage = "forum/member"
 ==
 {% component 'forumTopic' %}
