@@ -22,17 +22,20 @@ function onStart()
             </ul>
             <ul class="navbar-nav navbar-right">
                 {% if user %}
-                    <li class="nav-item" id="siteMiniNotifications">
-                        {% partial 'site/mini-notifications' %}
+                    <li class="nav-item">
+                        <a class="nav-link p-1" href="javascript:;" id="siteMiniNotifications">
+                            {% partial 'site/mini-notifications' %}
+                        </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle p-1" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center p-1" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="profile-avatar">
-                                <img src="{{ user.avatar_url }}" alt="Profile Picture">
+                                <img src="{{ user.avatar_url }}" alt="Profile Picture" />
                             </div>
+                            <div class="ps-2">{{ user.full_name }}</div>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ 'account/profile'|page }}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{{ 'forum/member'|page }}">View Profile</a></li>
                             {% if backendUrl %}<li><a class="dropdown-item" href="{{ backendUrl }}" target="backend">Backend Area</a></li>{% endif %}
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="#" data-request="onLogout">Logout</a></li>

@@ -1,6 +1,8 @@
-<a class="nav-link mini-notifications p-1 {{ notifications.hasUnread ? 'has-unread' }}" href="javascript:;" data-notifications-toggle>
+<div
+    class="mini-notifications {{ notifications.hasUnread ? 'has-unread' }}"
+    data-notifications-toggle>
     <i class="bi bi-bell fs-4"></i>
     <span class="translate-middle badge rounded-pill bg-danger">
         {{ notifications.unreadCount }}
     </span>
-</a>
+</div>

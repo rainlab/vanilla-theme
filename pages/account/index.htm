@@ -24,14 +24,23 @@ vars[activeNavLink] = 'account'
 {% endif %}
 
 <div class="page-account">
-    <div class="mb-4">
-        {% ajaxPartial 'account/field-name' %}
-    </div>
-    <div class="mb-4">
-        {% ajaxPartial 'account/field-email' %}
-    </div>
-    <div class="mb-4">
-        {% ajaxPartial 'account/field-password' %}
+    <div class="row">
+        <div class="col-md-8">
+            <div class="mb-4">
+                {% ajaxPartial 'account/field-name' %}
+            </div>
+            <div class="mb-4">
+                {% ajaxPartial 'account/field-email' %}
+            </div>
+            <div class="mb-4">
+                {% ajaxPartial 'account/field-password' %}
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="mb-4 ps-4">
+                {% ajaxPartial 'account/field-avatar' %}
+            </div>
+        </div>
     </div>
     <div class="mb-4">
         {% ajaxPartial 'account/field-two-factor-auth' %}
