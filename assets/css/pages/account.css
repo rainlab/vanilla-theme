@@ -1,6 +1,7 @@
 .page-account {
     .form-login {
         padding: 1rem;
+        max-width: 400px;
     }
 
     .section-title {

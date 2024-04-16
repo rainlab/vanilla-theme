@@ -3,7 +3,7 @@
     method="post"
     class="account-editor"
     data-request="onUpdateProfile"
-    data-request-update="{ _self: true }"
+    data-request-update="{ _self: true, 'site/mini-user-profile': '#siteMiniUserProfile' }"
     data-request-files
     data-request-flash>
 
@@ -23,7 +23,6 @@
     <div class="editor-view collapse show {{ collapseClass }}">
         <img
             src="{{ user.getAvatarThumb(256) }}"
-            accept=".jpg,.jpeg,.bmp,.png,.webp,.gif"
             alt="Profile Picture"
             style="width:128px"
             class="img-thumbnail" />
@@ -35,6 +34,7 @@
             type="file"
             value=""
             class="form-control"
+            accept=".jpg,.jpeg,.bmp,.png,.webp,.gif"
         />
         <div class="section-actions">
             <button
@@ -48,7 +48,7 @@
                     class="btn btn-secondary"
                     data-attach-loading
                     data-request="onUpdateProfile"
-                    data-request-update="{ _self: true }"
+                    data-request-update="{ _self: true, 'site/mini-user-profile': '#siteMiniUserProfile' }"
                     data-request-data="{ remove_avatar: true, message: null }"
                     type="button">
                     Remove

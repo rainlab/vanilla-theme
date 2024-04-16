@@ -40,7 +40,7 @@
 
     <div class="editor-edit collapse {{ collapseClass }}">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 mb-2">
                 <input
                     name="email"
                     type="email"
@@ -48,6 +48,21 @@
                     class="form-control"
                     placeholder="Email address"
                 />
+            </div>
+            <div class="col-12 mb-2">
+                <div class="form-check">
+                    <input type="hidden" name="Preference[promotional_emails]" value="false" />
+                    <input
+                        type="checkbox"
+                        class="form-check-input"
+                        name="Preference[promotional_emails]"
+                        value="null"
+                        id="promotionalEmails"
+                        {{ user.getPreference('promotional_emails', true) ? 'checked' }}>
+                    <label class="form-check-label" for="promotionalEmails">
+                        Send me promotional emails related to this website
+                    </label>
+                </div>
             </div>
         </div>
         <div class="section-actions">
