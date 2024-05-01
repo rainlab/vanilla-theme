@@ -1,0 +1,49 @@
+/*
+ * Callouts
+ */
+
+.callout {
+    margin-bottom: var(--line-height-computed);
+    padding: var(--callout-padding);
+    border-left: 3px solid var(--callout-border);
+
+    h4 {
+        margin-top: 0;
+        margin-bottom: 5px;
+    }
+    p:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.callout-danger {
+    background-color: var(--callout-danger-bg);
+    border-color: var(--callout-danger-border);
+    h4 {
+        color: var(--callout-danger-text);
+    }
+}
+
+.callout-warning {
+    background-color: var(--callout-warning-bg);
+    border-color: var(--callout-warning-border);
+    h4 {
+        color: var(--callout-warning-text);
+    }
+}
+
+.callout-info {
+    background-color: var(--callout-info-bg);
+    border-color: var(--callout-info-border);
+    h4 {
+        color: var(--callout-info-text);
+    }
+}
+
+.callout-success {
+    background-color: var(--callout-success-bg);
+    border-color: var(--callout-success-border);
+    h4 {
+        color: var(--callout-success-text);
+    }
+}

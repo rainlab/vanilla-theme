@@ -1,0 +1,47 @@
+==
+<?
+function onStart()
+{
+    $this['backendUrl'] = System::checkDebugMode() ? Backend::url('/') : null;
+}
+?>
+==
+{% set activeNavLink = activeNavLink|default(this.page.id) %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="navbar-brand" href="{{ 'index'|page }}">Vanilla</a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link {{ activeNavLink == 'account' ? 'active'}}" href="{{ 'account/index'|page }}">Account</a></li>
+                <li class="nav-item"><a class="nav-link {{ activeNavLink == 'profile' ? 'active'}}" href="{{ 'account/profile'|page }}">Profile</a></li>
+                <li class="nav-item"><a class="nav-link {{ activeNavLink == 'forum' ? 'active'}}" href="{{ 'forum/index'|page }}">Forum</a></li>
+            </ul>
+            <ul class="navbar-nav navbar-right">
+                {% if user %}
+                    <li class="nav-item">
+                        <a id="siteMiniNotifications" class="nav-link p-1" href="javascript:;">
+                            {% partial 'site/mini-notifications' %}
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a id="siteMiniUserProfile" class="nav-link dropdown-toggle d-flex align-items-center p-1" href="javascript:;" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {% partial 'site/mini-user-profile' %}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ 'forum/member'|page({ slug: null }) }}">View Profile</a></li>
+                            {% if backendUrl %}<li><a class="dropdown-item" href="{{ backendUrl }}" target="backend">Backend Area</a></li>{% endif %}
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" data-request="onLogout">Logout</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{{ 'account/login'|page }}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

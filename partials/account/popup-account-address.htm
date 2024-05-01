@@ -1,0 +1,130 @@
+<form
+    method="post"
+    class="modal-content"
+    data-request="onUpdateAddress"
+    data-request-update="{ 'account/address-list': '#accountAddressList' }"
+    data-request-success="this.querySelector('[data-bs-dismiss]').click()"
+    data-request-flash>
+
+    {% set address = post('address_id')
+        ? addressBook.addresses.find(post('address_id'))
+        : null %}
+
+    {% if address %}
+        <input type="hidden" name="address_id" value="{{ address.id }}" />
+    {% else %}
+        <input type="hidden" name="redirect" value="true" />
+        <input type="hidden" name="address_create" value="true" />
+    {% endif %}
+
+    <div class="modal-header">
+        <h5 class="modal-title h4">
+            {% if address %}
+                Update Address
+            {% else %}
+                Add a New Address
+            {% endif %}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    </div>
+    <div class="modal-body">
+        <p>
+            Please fill in the address information below.
+        </p>
+        <div class="row g-3">
+            <div class="col-12">
+                <input
+                    id="firstNameInput"
+                    name="first_name"
+                    type="text"
+                    class="form-control"
+                    placeholder="First name"
+                    value="{{ address.first_name }}"
+                    required />
+            </div>
+            <div class="col-12">
+                <input
+                    name="last_name"
+                    type="text"
+                    class="form-control"
+                    placeholder="Last name"
+                    value="{{ address.last_name }}"
+                    required />
+            </div>
+            <div class="col-12">
+                <input
+                    name="company"
+                    type="text"
+                    class="form-control"
+                    value="{{ address.company_name }}"
+                    placeholder="Business Name" />
+            </div>
+            <div class="col-12">
+                <input
+                    name="address_line1"
+                    type="text"
+                    class="form-control"
+                    value="{{ address.address_line1 }}"
+                    placeholder="Address" />
+            </div>
+            <div class="col-md-6">
+                <input
+                    name="city"
+                    type="text"
+                    class="form-control"
+                    value="{{ address.city }}"
+                    placeholder="City" />
+            </div>
+            <div class="col-md-6">
+                <input
+                    name="zip"
+                    type="text"
+                    class="form-control"
+                    value="{{ address.zip }}"
+                    placeholder="Zip / Postal Code" />
+            </div>
+            <div class="col-12">
+                {% partial '@form-select-country' countryId=address.country_id %}
+            </div>
+            <div class="col-12">
+                {% partial '@form-select-state' countryId=address.country_id stateId=address.state_id %}
+            </div>
+            <div class="col-12">
+                <div class="form-check">
+                    <input name="is_default" type="hidden" value="0" />
+                    <input
+                        name="is_default"
+                        class="form-check-input"
+                        type="checkbox"
+                        value="1"
+                        {{ address.is_default ? 'checked' }}
+                        id="isDefaultAddressCheckbox" />
+                    <label class="form-check-label" for="isDefaultAddressCheckbox">
+                        Set as default address
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal">
+            Cancel
+        </button>
+        <button
+            class="btn btn-success"
+            data-attach-loading
+            type="submit">
+            Save Address
+        </button>
+    </div>
+
+</form>
+
+<script>
+setTimeout(function() {
+    document.getElementById('firstNameInput').focus();
+}, 100);
+</script>

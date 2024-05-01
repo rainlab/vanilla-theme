@@ -1,0 +1,50 @@
+<form
+    method="post"
+    class="modal-content"
+    data-request="onDeleteUser"
+    data-request-flash>
+
+    <input type="hidden" name="redirect" value="index" />
+
+    <div class="modal-header">
+        <h5 class="modal-title h4">
+            Delete account
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    </div>
+    <div class="modal-body">
+        <p>
+            Are you sure you want to permanently delete your account?
+            Please enter your password to confirm.
+        </p>
+
+        <div>
+            <input
+                id="deleteAccountPassword"
+                name="password"
+                type="password"
+                value=""
+                class="form-control"
+                placeholder="Password"
+            />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cancel
+        </button>
+        <button
+            class="btn btn-danger"
+            data-attach-loading
+            type="submit">
+            Delete account
+        </button>
+    </div>
+
+</form>
+
+<script>
+setTimeout(function() {
+    document.getElementById('deleteAccountPassword').focus();
+}, 100);
+</script>

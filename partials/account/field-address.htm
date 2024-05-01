@@ -1,0 +1,107 @@
+{% set collapseClass = 'address-collapse' %}
+<form
+    method="post"
+    class="account-editor"
+    data-request="onUpdateProfile"
+    data-request-update="{ _self: true }"
+    data-request-flash>
+
+    <input type="hidden" name="message" value="false" />
+
+    <div class="section-title border-bottom d-flex">
+        <h5 class="h4 flex-grow-1">Address</h5>
+        <button
+            type="button"
+            class="btn btn-outline-secondary btn-sm"
+            data-bs-toggle="collapse"
+            data-bs-target=".{{ collapseClass }}">
+            Edit
+        </button>
+    </div>
+
+    <div class="editor-view collapse show {{ collapseClass }}">
+        <div class="d-flex">
+            <label class="text-success flex-grow-1">Your address</label>
+            <div class="field-value">
+                {{ user.address_line1 }},
+                {{ user.address_line2 ? user.address_line2 ~ ',' }}
+                {{ user.city }} {{ user.zip }},
+                {{ user.state.name }}, {{ user.country.name }}
+            </div>
+        </div>
+    </div>
+
+    <div class="editor-edit collapse {{ collapseClass }}">
+        <div class="row">
+            <div class="col-12 mb-2">
+                <label for="inputAddressLine1" class="form-label">Address Line 1</label>
+                <input
+                    id="inputAddressLine1"
+                    name="address_line1"
+                    type="text"
+                    value="{{ user.address_line1 }}"
+                    class="form-control"
+                />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-2">
+                <label for="inputAddressLine2" class="form-label">Address Line 2</label>
+                <input
+                    id="inputAddressLine2"
+                    name="address_line2"
+                    type="text"
+                    value="{{ user.address_line2 }}"
+                    class="form-control"
+                />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 mb-2">
+                <label for="inputCity" class="form-label">City / Province</label>
+                <input
+                    name="phone"
+                    type="text"
+                    value="{{ user.city }}"
+                    class="form-control"
+                    id="inputCity"
+                />
+            </div>
+            <div class="col-6 mb-2">
+                <label for="inputZip" class="form-label">Zip / Postal Code</label>
+                <input
+                    name="phone"
+                    type="text"
+                    value="{{ user.zip }}"
+                    class="form-control"
+                    id="inputZip"
+                />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 mb-2">
+                <label for="stateControlSelector" class="form-label">Country</label>
+                {% partial '@form-select-country' countryId=user.country_id %}
+            </div>
+            <div class="col-6 mb-2">
+                <label for="stateControlSelector" class="form-label">State</label>
+                {% partial '@form-select-state' countryId=user.country_id stateId=user.state_id %}
+            </div>
+        </div>
+        <div class="section-actions">
+            <button
+                class="btn btn-primary"
+                data-attach-loading
+                type="submit">
+                Save
+            </button>
+            <button
+                class="btn btn-link"
+                data-bs-toggle="collapse"
+                data-bs-target=".{{ collapseClass }}"
+                type="reset">
+                Cancel
+            </button>
+        </div>
+    </div>
+</form>

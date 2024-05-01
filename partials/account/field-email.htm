@@ -1,0 +1,96 @@
+{% set collapseClass = 'email-collapse' %}
+<form
+    method="post"
+    class="account-editor"
+    data-request="onUpdateProfile"
+    data-request-update="{ _self: true }"
+    data-request-flash>
+
+    <input type="hidden" name="message" value="false" />
+
+    <div class="section-title border-bottom d-flex">
+        <h5 class="h4 flex-grow-1">Email</h5>
+        <button
+            type="button"
+            class="btn btn-outline-secondary btn-sm"
+            data-bs-toggle="collapse"
+            data-bs-target=".{{ collapseClass }}">
+            Edit
+        </button>
+    </div>
+
+    <div class="editor-view collapse show {{ collapseClass }}">
+        <div class="d-flex">
+            <label class="text-success flex-grow-1">Your email address</label>
+            <div class="field-value">
+                {{ user.email }}
+            </div>
+        </div>
+        <div class="d-flex">
+            <label class="text-success flex-grow-1">Status</label>
+            <div class="field-value">
+                {% if showLinkSent %}
+                    Pending
+                {% else %}
+                    {{ user.hasVerifiedEmail ? 'Verified' : 'Unverified' }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="editor-edit collapse {{ collapseClass }}">
+        <div class="row">
+            <div class="col-12 mb-2">
+                <input
+                    name="email"
+                    type="email"
+                    value="{{ user.email }}"
+                    class="form-control"
+                    placeholder="Email address"
+                />
+            </div>
+            <div class="col-12 mb-2">
+                <div class="form-check">
+                    <input type="hidden" name="Preference[promotional_emails]" value="false" />
+                    <input
+                        type="checkbox"
+                        class="form-check-input"
+                        name="Preference[promotional_emails]"
+                        value="null"
+                        id="promotionalEmails"
+                        {{ user.getPreference('promotional_emails', true) ? 'checked' }}>
+                    <label class="form-check-label" for="promotionalEmails">
+                        Send me promotional emails related to this website
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="section-actions">
+            <button
+                class="btn btn-primary"
+                data-attach-loading
+                type="submit">
+                Save
+            </button>
+            {% if not user.hasVerifiedEmail %}
+                <button
+                    class="btn btn-secondary"
+                    data-attach-loading
+                    data-request="onVerifyEmail"
+                    data-request-update="{ _self: true }"
+                    data-request-data="{ message: null }"
+                    data-request-flash
+                    type="button">
+                    Verify email
+                </button>
+            {% endif %}
+            <button
+                class="btn btn-link"
+                data-bs-toggle="collapse"
+                data-bs-target=".{{ collapseClass }}"
+                type="reset">
+                Cancel
+            </button>
+        </div>
+    </div>
+</form>

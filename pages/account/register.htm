@@ -1,0 +1,22 @@
+##
+url = "/account/register"
+layout = "default"
+title = "Account Register"
+description = "Sign in, registration and account management."
+
+[session]
+security = "guest"
+redirect = "account/index"
+
+[registration]
+
+[resources]
+vars[activeNavLink] = 'account'
+==
+<div class="page-account">
+    <div class="py-4">
+        <main class="form-login m-auto">
+            {% component 'registration' %}
+        </main>
+    </div>
+</div>

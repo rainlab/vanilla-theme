@@ -1,0 +1,132 @@
+{% set collapseClass = 'two-factor-auth-collapse' %}
+{% set isVisible = showConfirmation or showRecoveryCodes %}
+<div>
+    <div class="section-title border-bottom d-flex">
+        <h5 class="h4 flex-grow-1">Two factor authentication</h5>
+        <button
+            type="button"
+            class="btn btn-outline-secondary btn-sm"
+            data-bs-toggle="collapse"
+            data-bs-target=".{{ collapseClass }}">
+            Edit
+        </button>
+    </div>
+
+    <div class="editor-view collapse {{ not isVisible ? 'show' }} {{ collapseClass }}">
+        <div class="d-flex">
+            <label class="text-success flex-grow-1">Status</label>
+            <div class="field-value">
+                {{ account.twoFactorEnabled ? 'Enabled' : 'Disabled' }}
+            </div>
+        </div>
+    </div>
+
+    <div class="editor-edit collapse {{ isVisible ? 'show' }} {{ collapseClass }}">
+        {% if account.twoFactorEnabled %}
+            {% if showRecoveryCodes %}
+                <p>
+                    Store these recovery codes in a secure password manager.
+                    They are single-use codes that can be used to access your account if your two factor authentication device is lost.
+                </p>
+                <ul class="list-group mb-3">
+                    {% for code in account.twoFactorRecoveryCodes%}
+                        <li class="list-group-item"><code>{{ code }}</code></li>
+                    {% endfor %}
+                </ul>
+                <button
+                    class="btn btn-secondary"
+                    data-attach-loading
+                    data-request="onRegenerateTwoFactorRecoveryCodes"
+                    data-request-update="{ _self: true }"
+                    type="button">
+                    Regenerate recovery codes
+                </button>
+            {% else %}
+                <p>You have enabled two factor authentication.</p>
+                <button
+                    class="btn btn-secondary"
+                    data-attach-loading
+                    data-request="onShowTwoFactorRecoveryCodes"
+                    data-request-update="{ _self: true }"
+                    type="button">
+                    Show recovery codes
+                </button>
+            {% endif %}
+            <button
+                class="btn btn-danger"
+                data-attach-loading
+                data-request="onDisableTwoFactor"
+                data-request-confirm="Are you sure you want to disable two factor authentication?"
+                data-request-update="{ _self: true }"
+                type="button">
+                Disable
+            </button>
+
+        {% else %}
+
+            {% if showConfirmation %}
+                <form
+                    method="post"
+                    data-request="onConfirmTwoFactor"
+                    data-request-update="{ _self: true }"
+                    data-request-flash>
+                    <p>
+                        To enable two factor authentication, scan the following QR code using your phone's authenticator application or enter the setup key and provide the generated OTP code.
+                    </p>
+                    <div class="row">
+                        <div class="col-md-auto">
+                            <div class="pb-3">
+                                {{ user.twoFactorQrCodeSvg|raw }}
+                            </div>
+                        </div>
+                        <div class="col-md-auto">
+                            <h5 class="mb-3">Setup key: {{ user.two_factor_secret }}</h5>
+                            <div class="row g-3 align-items-center">
+                                <div class="col-auto">
+                                    <label for="inputCode" class="col-form-label">Code</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input
+                                        name="code"
+                                        type="password"
+                                        value=""
+                                        class="form-control"
+                                        id="inputCode"
+                                        autocomplete="one-time-code"
+                                    />
+                                </div>
+                            </div>
+                            <div class="section-actions">
+                                <button
+                                    class="btn btn-primary"
+                                    data-attach-loading
+                                    type="submit">
+                                    Confirm
+                                </button>
+                                <button
+                                    class="btn btn-secondary"
+                                    data-attach-loading
+                                    data-request="onAjax"
+                                    data-request-update="{ _self: true }"
+                                    type="button">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            {% else %}
+                <p>You have not enabled two factor authentication.</p>
+                <button
+                    class="btn btn-secondary"
+                    data-attach-loading
+                    data-request="onEnableTwoFactor"
+                    data-request-update="{ _self: true }"
+                    type="button">
+                    Enable
+                </button>
+            {% endif %}
+
+        {% endif %}
+    </div>
+</div>

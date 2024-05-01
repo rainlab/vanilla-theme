@@ -1,0 +1,76 @@
+{% import _self as field %}
+{% set collapseClass = 'account-sessions-collapse' %}
+{% set sessions = account.sessions %}
+{% set mySession = collect(sessions).where('is_current_device').first %}
+{% if sessions %}
+    <div>
+        <div class="section-title border-bottom d-flex">
+            <h5 class="h4 flex-grow-1">Browser sessions ({{ sessions|length }})</h5>
+            <button
+                type="button"
+                class="btn btn-outline-secondary btn-sm"
+                data-bs-toggle="collapse"
+                data-bs-target=".{{ collapseClass }}">
+                Edit
+            </button>
+        </div>
+
+        <div class="editor-view collapse show {{ collapseClass }}">
+            <div class="account-devices">
+                {{ field.render_browser_session(mySession) }}
+            </div>
+        </div>
+
+        <div class="editor-edit collapse {{ collapseClass }}">
+            <div class="account-devices">
+                {% for session in sessions %}
+                    {{ field.render_browser_session(session) }}
+                {% endfor %}
+            </div>
+
+            <div class="section-actions">
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-request="onAjax"
+                    data-request-update="{ 'account/popup-account-sessions': '#siteModalContent' }"
+                    data-bs-toggle="modal"
+                    data-bs-target="#siteModal">
+                    Log out other devices
+                </button>
+            </div>
+        </div>
+
+    </div>
+{% endif %}
+
+{% macro render_browser_session(session) %}
+    <div class="device-item d-flex items-center">
+        <div class="device-agent-icon text-muted">
+            {% if session.agent.is_desktop %}
+                <i class="bi bi-pc-display-horizontal"></i>
+            {% else %}
+                <i class="bi bi-phone"></i>
+            {% endif %}
+        </div>
+        <div class="ms-3">
+            <div>
+                {{ session.agent.platform|default('Unknown') }} - {{ session.agent.browser|default('Unknown') }}
+            </div>
+
+            <div>
+                <div class="text-muted">
+                    {{ session.ip_address|default('0.0.0.0') }},
+
+                    {% if session.is_current_device %}
+                        <strong class="text-success">
+                            This device
+                        </strong>
+                    {% else %}
+                        Last active {{ session.last_active }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}

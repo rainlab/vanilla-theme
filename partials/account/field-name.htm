@@ -1,0 +1,68 @@
+{% set collapseClass = 'name-collapse' %}
+<form
+    method="post"
+    class="account-editor"
+    data-request="onUpdateProfile"
+    data-request-update="{ _self: true, 'site/mini-user-profile': '#siteMiniUserProfile' }"
+    data-request-flash>
+
+    <input type="hidden" name="message" value="false" />
+
+    <div class="section-title border-bottom d-flex">
+        <h5 class="h4 flex-grow-1">Name</h5>
+        <button
+            type="button"
+            class="btn btn-outline-secondary btn-sm"
+            data-bs-toggle="collapse"
+            data-bs-target=".{{ collapseClass }}">
+            Edit
+        </button>
+    </div>
+
+    <div class="editor-view collapse show {{ collapseClass }}">
+        <div class="d-flex">
+            <label class="text-success flex-grow-1">Your real name</label>
+            <div class="field-value">
+                {{ user.first_name }} {{ user.last_name }}
+            </div>
+        </div>
+    </div>
+
+    <div class="editor-edit collapse {{ collapseClass }}">
+        <div class="row">
+            <div class="col-6">
+                <input
+                    name="first_name"
+                    type="text"
+                    value="{{ user.first_name }}"
+                    class="form-control"
+                    placeholder="First name"
+                />
+            </div>
+            <div class="col-6">
+                <input
+                    name="last_name"
+                    type="text"
+                    value="{{ user.last_name }}"
+                    class="form-control"
+                    placeholder="Last name"
+                />
+            </div>
+        </div>
+        <div class="section-actions">
+            <button
+                class="btn btn-primary"
+                data-attach-loading
+                type="submit">
+                Save
+            </button>
+            <button
+                class="btn btn-link"
+                data-bs-toggle="collapse"
+                data-bs-target=".{{ collapseClass }}"
+                type="reset">
+                Cancel
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,23 @@
+##
+title = "Forum"
+url = "/forum"
+layout = "default"
+description = "The main forum page with all the channels."
+hidden = "0"
+
+[resources]
+vars[activeNavLink] = 'forum'
+
+[forumChannels]
+memberPage = "404"
+channelPage = "forum/channel"
+topicPage = "forum/topic"
+==
+{# Remove this if you like #}
+{% if not forumChannels %}
+    <div class="alert alert-warning" role="alert">
+        <p class="mb-0">The plugin <code>RainLab.Forum</code> was not found. Please install this plugin in the Admin Panel using the <strong>System → System Updates → Install Packages</strong> page.</p>
+    </div>
+{% endif %}
+
+{% component 'forumChannels' %}
