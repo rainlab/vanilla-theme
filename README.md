@@ -14,7 +14,7 @@ Package | Version Required
 October CMS | 3.6 or above
 `RainLab.User` | 3.0 or above
 `RainLab.UserPlus` | 2.0 or above
-`RainLab.Forum` | 1.4 or above
+`RainLab.Forum` | 2.0 or above
 
 ## Installation Instructions
 
