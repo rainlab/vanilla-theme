@@ -2,6 +2,7 @@ name: Vanilla
 description: A plain starter template that implements account management, a blog and community forum.
 author: October CMS
 homepage: 'http://octobercms.com'
+authorCode: RainLab
 code: Vanilla
 require:
     - RainLab.User
