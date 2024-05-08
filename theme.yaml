@@ -7,4 +7,5 @@ code: Vanilla
 require:
     - RainLab.User
     - RainLab.UserPlus
+    - RainLab.Location
     - RainLab.Forum
