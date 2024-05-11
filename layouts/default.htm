@@ -26,8 +26,10 @@ security = "all"
         <section id="layout-content">
             <div class="jumbotron pt-2 mb-5 bg-body-tertiary rounded-3" style="background-image:url({{ ('assets/images/textures/'~jumbotronTexture~'.png')|theme }})">
                 <div class="container py-5">
-                    <h1 class="display-5">{{ this.page.title }}</h1>
-                    <p class="col-md-8 fs-4">{{ this.page.description }}</p>
+                    {% placeholder jumbotron default %}
+                        <h1 class="display-5">{{ this.page.title }}</h1>
+                        <p class="col-md-8 fs-4">{{ this.page.description }}</p>
+                    {% endplaceholder %}
                 </div>
             </div>
             <div class="container">
